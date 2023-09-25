@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: "postgres-mywallet"
+    restart: always
+    tty: true
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mywallet
+    volumes:
+      - ./.postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - mywallet
+
+networks:
+  mywallet:
+    driver: "bridge"

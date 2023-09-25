@@ -1,0 +1,13 @@
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mywallet?currentSchema=public&ApplicationName=mywallet-dev
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: admin
+  jpa:
+    open-in-view: true
+    show-sql: true
