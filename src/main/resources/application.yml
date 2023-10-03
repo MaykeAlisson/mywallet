@@ -1,8 +1,8 @@
 
-#spring:
-#  profiles:
-#    include:
-#      - springdoc
+spring:
+  profiles:
+    include:
+      - springdoc
 ---
 app:
   version: 1.0.0

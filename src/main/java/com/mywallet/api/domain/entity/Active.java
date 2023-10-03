@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "actives")
+@EqualsAndHashCode(of = "id")
 public class Active implements Serializable {
 
     @Id

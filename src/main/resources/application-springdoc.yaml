@@ -1,0 +1,9 @@
+springdoc:
+  api-docs:
+    path: /doc-api
+  swagger-ui:
+    path: /doc-ui
+  paths-to-match:
+    - /**
+  packages-to-scan:
+    - com.mywallet.api.controllers
