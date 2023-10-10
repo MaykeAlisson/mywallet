@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import static com.mywallet.api.provider.constrans.Useful.OPEN_API_BEARER_TYPE;
-
+import static com.mywallet.api.provider.constrans.Environment.OPEN_API_BEARER_TYPE;
 
 @Profile(value = {"dev"})
 @Configuration

@@ -25,4 +25,5 @@ public class CorsConfiguration implements WebMvcConfigurer {
             .allowedMethods("GET", "OPTIONS", "HEAD", "TRACE", "CONNECT");
          */
     }
+
 }

@@ -11,8 +11,7 @@ import static java.lang.System.setProperty;
 import static java.util.Optional.ofNullable;
 import static org.springframework.core.env.AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME;
 
-//@SpringBootApplication
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@SpringBootApplication
 public class ApiApplication {
 
 	public static void main(String[] args) {

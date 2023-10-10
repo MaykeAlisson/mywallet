@@ -1,4 +1,4 @@
-package com.mywallet.api.controllers;
+package com.mywallet.api.controllers.impl;
 
 import com.mywallet.api.provider.exception.BusinessException;
 import com.mywallet.api.provider.exception.ResourceNotFoundException;
@@ -6,8 +6,6 @@ import com.mywallet.api.provider.exception.StandardError;
 import com.mywallet.api.provider.exception.ValidateError;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -24,8 +22,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class ResourcerExceptionHandler {
 
-    private MessageSource messageSource;
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Set<ValidateError>> handle(MethodArgumentNotValidException exception, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -33,10 +29,10 @@ public class ResourcerExceptionHandler {
         Set<ValidateError> errors = new HashSet<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
-            final String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ValidateError erro = new ValidateError(e.getField(), message);
+            ValidateError erro = new ValidateError(e.getField(), e.getDefaultMessage());
             errors.add(erro);
         });
+
 
         return ResponseEntity.status(status).body(errors);
     }
