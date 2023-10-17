@@ -22,7 +22,6 @@ import static java.lang.String.format;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
     private final UserMapper userMapper = UserMapper.from();
     private final AcessMapper acessMapper = AcessMapper.from();
 
