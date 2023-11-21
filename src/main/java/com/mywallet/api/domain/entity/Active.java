@@ -1,5 +1,6 @@
 package com.mywallet.api.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mywallet.api.domain.enums.ActiveCategory;
 import com.mywallet.api.domain.enums.ActiveCurrency;
 import com.mywallet.api.domain.enums.ActiveType;
@@ -73,6 +74,7 @@ public class Active implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
     private User user;
 
     @Column(name = "create_at")

@@ -2,9 +2,11 @@ package com.mywallet.api.provider.authentication;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @Getter
 public class User implements UserDetails {
@@ -55,5 +57,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public static User getUserContext() {
+        final var context = SecurityContextHolder.getContext();
+        if (Objects.nonNull(context) &&
+                Objects.nonNull(context.getAuthentication()) &&
+                context.getAuthentication().getPrincipal() instanceof User userAuth) return userAuth;
+        return null;
     }
 }

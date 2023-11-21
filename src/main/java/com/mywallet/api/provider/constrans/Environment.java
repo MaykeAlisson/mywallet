@@ -26,4 +26,10 @@ public interface Environment {
      * @apiNote Open API
      */
     String OPEN_API_BEARER_TYPE = "Token";
+
+    /**
+     * @apiNote brapi
+     */
+    String PRE_FIX_BRAPI = "brapi";
+    String BRAPI_URL_FIND_TICKET = PRE_FIX_BRAPI + "FindTicket";
 }

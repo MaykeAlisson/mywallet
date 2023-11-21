@@ -12,4 +12,6 @@ spring:
     open-in-view: true
     show-sql: true
 
-tokenSecret: "bGliZXJkYWRlX2ZpbmFuY2VpcmFfdHJhbnNwYXJlbmNpYV9nZXJhX2NvbmZpYW5jYQ=="
+---
+
+brapiFindTicket: "https://brapi.dev/api/quote"
