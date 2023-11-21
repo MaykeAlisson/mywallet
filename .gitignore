@@ -35,4 +35,4 @@ build/
 /devops/.postgresql/
 
 ### Secrets ##
-/src/main/resources/application-secret.yaml
+src/main/resources/application-secret.yaml
