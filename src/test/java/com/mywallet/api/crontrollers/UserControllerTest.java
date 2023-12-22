@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static com.mywallet.api.mock.UserMock.JSON_USER_CREATE_REQUEST;
+import static com.mywallet.api.mock.RequestMock.JSON_USER_CREATE_REQUEST;
 import static com.mywallet.api.provider.mappers.Object.readValue;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
