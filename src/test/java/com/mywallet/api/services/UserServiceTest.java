@@ -31,7 +31,7 @@ public class UserServiceTest extends ApiApplicationTests {
     @Test
     void createWhitSuccess(){
         final var userDto = new UserDto("any_name", "any@gmail.com", "123456");
-        final var user = new User(1, "any_name", "", "", null,null);
+        final var user = new User(1L, "any_name", "", "", null,null);
         when(this.userRepository.findByEmail(any())).thenReturn(Optional.empty());
         when(this.userRepository.save(any())).thenReturn(user);
 
@@ -45,7 +45,7 @@ public class UserServiceTest extends ApiApplicationTests {
     @Test
     void createWhitEmailRegistered(){
         final var userDto = new UserDto("any_name", "any@gmail.com", "123456");
-        final var user = new User(1, "any_name", "any@gmail.com", "", null,null);
+        final var user = new User(1L, "any_name", "any@gmail.com", "", null,null);
         when(this.userRepository.findByEmail(any())).thenReturn(Optional.of(user));
 
         Assertions.assertThrows(BusinessException.class, () -> this.userService.create(userDto)) ;
@@ -55,8 +55,8 @@ public class UserServiceTest extends ApiApplicationTests {
     @Test
     void updateWhitSuccess(){
         final var userUpdate = new UpdateUserDto("New Name");
-        final var user = new User(1, "any_name", "any@gmail.com", "", null,null);
-        final var userUpdeted = new User(1, "New Name", "any@gmail.com", "", null,null);
+        final var user = new User(1L, "any_name", "any@gmail.com", "", null,null);
+        final var userUpdeted = new User(1L, "New Name", "any@gmail.com", "", null,null);
         when(this.userRepository.findById(any())).thenReturn(Optional.of(user));
 
         this.userService.update(1,  userUpdate);

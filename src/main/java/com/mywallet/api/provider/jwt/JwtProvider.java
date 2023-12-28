@@ -27,7 +27,7 @@ public class JwtProvider implements Serializable {
     public static final String SECRET = "bGliZXJkYWRlX2ZpbmFuY2VpcmFfdHJhbnNwYXJlbmNpYV9nZXJhX2NvbmZpYW5jYQ==";
 
     public static Optional<String> gerar(
-            final Integer idUsuario,
+            final Long idUsuario,
             final Long idPerfil,
             final LocalDateTime dataExpiracao
     ) {
@@ -39,7 +39,7 @@ public class JwtProvider implements Serializable {
                 .compact());
     }
 
-    public static Optional<String> gerar(final Integer idUsuario, final Long idPerfil) {
+    public static Optional<String> gerar(final Long idUsuario, final Long idPerfil) {
         checkGerar(idUsuario, idPerfil);
         return Optional.ofNullable(Jwts.builder()
                 .setSubject(createSubject(idUsuario, idPerfil))
@@ -160,11 +160,11 @@ public class JwtProvider implements Serializable {
                 .orElseThrow(() -> new RuntimeException("Não foi possivel recuperar request"));
     }
 
-    private static String createSubject(final Integer idUsuario, final Long idPerfil) {
+    private static String createSubject(final Long idUsuario, final Long idPerfil) {
         return String.format("%s;%s;%s", idUsuario, idPerfil, LocalDate.now());
     }
 
-    private static void checkGerar(final Integer idUsuario, final Long idPerfil, final LocalDateTime dataExpiracao) {
+    private static void checkGerar(final Long idUsuario, final Long idPerfil, final LocalDateTime dataExpiracao) {
         StringJoiner check = new StringJoiner(" ");
         if (idUsuario == null) {
             check.add("[ idUsuario ]");
@@ -183,7 +183,7 @@ public class JwtProvider implements Serializable {
         }
     }
 
-    private static void checkGerar(final Integer idUsuario, final Long idPerfil) {
+    private static void checkGerar(final Long idUsuario, final Long idPerfil) {
         StringJoiner check = new StringJoiner(" ");
         if (idUsuario == null) {
             check.add("[ idUsuario ]");

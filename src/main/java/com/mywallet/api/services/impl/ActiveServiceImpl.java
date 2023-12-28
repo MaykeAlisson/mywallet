@@ -35,7 +35,7 @@ public class ActiveServiceImpl implements ActiveService {
         return this.activeRepository.save(active);
     }
 
-    private Boolean existActive(final String ticket, final Integer userId){
+    private Boolean existActive(final String ticket, final Long userId){
         return this.activeRepository.findByTicketAndUserId(ticket, userId).isPresent();
     }
 

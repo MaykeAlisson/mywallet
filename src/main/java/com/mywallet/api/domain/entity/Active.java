@@ -27,6 +27,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class Active implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -64,13 +65,22 @@ public class Active implements Serializable {
     private ActiveCurrency currency;
 
     @Column(name = "quantity")
-    private Integer quantity;
+    private Long quantity;
 
-    @Column(name = "evaluation")
-    private Integer evaluation;
+    @Column(name = "pvp")
+    private BigDecimal pvp;
+
+    @Column(name = "pl")
+    private BigDecimal pl;
+
+    @Column(name = "pm")
+    private BigDecimal pm;
 
     @OneToMany(mappedBy = "active", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Report> reports;
+
+    @OneToMany(mappedBy = "active", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Launch> launchs;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

@@ -1,0 +1,2 @@
+ALTER TABLE actives
+  ADD pl DECIMAL(32,16) NULL

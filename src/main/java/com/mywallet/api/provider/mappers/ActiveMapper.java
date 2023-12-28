@@ -7,14 +7,13 @@ import com.mywallet.api.domain.model.BrapiTicketModel;
 
 public class ActiveMapper {
 
-   public static Active fromToActive(final ActiveDto dto, final BrapiTicketModel.Ticket brapiTicket, final Integer userId){
+   public static Active fromToActive(final ActiveDto dto, final BrapiTicketModel.Ticket brapiTicket, final Long userId){
        return Active.builder()
                .name(brapiTicket.longName())
                .ticket(dto.ticket())
                .category(dto.category())
                .type(dto.type())
                .currency(dto.currency())
-               .quantity(dto.quantity())
                .user(User.builder().id(userId).build())
                .build();
    }

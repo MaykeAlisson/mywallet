@@ -33,7 +33,7 @@ public class UserControllerTest extends ApiApplicationTests {
 
     @Test
     void create() throws Exception {
-        final var acess = new AcessModel(1, "any_name", "token");
+        final var acess = new AcessModel(1L, "any_name", "token");
 
         when(this.userService.create(any())).thenReturn(acess);
 

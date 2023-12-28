@@ -20,6 +20,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,12 +41,12 @@ public class ActiveServiceTest extends ApiApplicationTests {
 
     @Test
     void createWhitSuccess(){
-        final var user = new User("", "", List.of(), 1);
+        final var user = new User("", "", List.of(), 1L);
         final var auth =  new UsernamePasswordAuthenticationToken(user, null);
         final var securityContext = Mockito.mock(SecurityContext.class);
         SecurityContextHolder.setContext(securityContext);
-        final var dto = new ActiveDto("any_ticket", 1,  ActiveCategory.FII, ActiveType.BUY_HOLD, ActiveCurrency.REAL);
-        final var active = new Active(1, "any_name", "any_ticket", ActiveCategory.FII, ActiveType.BUY_HOLD, ActiveCurrency.REAL, 3, 2, List.of(), null, null, null);
+        final var dto = new ActiveDto("any_ticket",ActiveCategory.FII, ActiveType.BUY_HOLD, ActiveCurrency.REAL);
+        final var active = new Active(1L, "any_name", "any_ticket", ActiveCategory.FII, ActiveType.BUY_HOLD, ActiveCurrency.REAL, 3L, new BigDecimal("3"), new BigDecimal("2"), new BigDecimal("2"), List.of(), List.of(), null, null, null);
         final var brapiTicket = new BrapiTicketModel(List.of(new BrapiTicketModel.Ticket("", "", "", 10.5F)));
 
         when(securityContext.getAuthentication()).thenReturn(auth);
@@ -55,16 +56,16 @@ public class ActiveServiceTest extends ApiApplicationTests {
 
         final var result = this.activeService.create(dto);
 
-        verify(this.activeRepository, times(1)).findByTicketAndUserId("any_ticket", 1);
+        verify(this.activeRepository, times(1)).findByTicketAndUserId("any_ticket", 1L);
         verify(this.brapiService, times(1)).findTicket("any_ticket");
         Assertions.assertNull(result.getUser());
         Assertions.assertNotNull(result.getName());
     }
 
-    @Test
-    void createErrorNotFoundUserId(){}
-
-    @Test
-    void createErrorNotFoundUserId(){}
+//    @Test
+//    void createErrorNotFoundUserId(){}
+//
+//    @Test
+//    void createErrorNotFoundUserId(){}
 
 }

@@ -4,10 +4,10 @@ spring:
       on-profile:
         - dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/mywallet?currentSchema=public&ApplicationName=mywallet-dev
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/mywallet?ApplicationName=mywallet-dev
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: admin
+    password: root
   jpa:
     open-in-view: true
     show-sql: true

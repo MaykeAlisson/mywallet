@@ -1,2 +1,2 @@
-ALTER TABLE public.reports
+ALTER TABLE reports
   ADD alert boolean;

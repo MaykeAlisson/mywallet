@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ActiveRepository extends JpaRepository<Active, Integer> {
 
-    Optional<Active> findByTicketAndUserId(String ticket, Integer userId);
+    Optional<Active> findByTicketAndUserId(String ticket, Long userId);
 }

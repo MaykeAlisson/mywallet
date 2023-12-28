@@ -11,13 +11,13 @@ import java.util.Objects;
 @Getter
 public class User implements UserDetails {
 
-    private final Integer userId;
+    private final Long userId;
     private final String username;
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
 
     public User(final String username, final String password,
-                final Collection<? extends GrantedAuthority> authorities, final  Integer userId) {
+                final Collection<? extends GrantedAuthority> authorities, final  Long userId) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;

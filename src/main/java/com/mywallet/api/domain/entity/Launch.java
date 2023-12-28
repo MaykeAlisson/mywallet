@@ -1,11 +1,16 @@
 package com.mywallet.api.domain.entity;
 
-
+import com.mywallet.api.domain.enums.LaunchType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +22,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.Instant;
 
 @Getter
@@ -26,22 +33,30 @@ import java.time.Instant;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "users")
-public class User implements Serializable {
+@Table(name = "launchs")
+public class Launch implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "actives_id", referencedColumnName = "id")
+    private Active active;
 
-    @Column(name = "email", unique = true, nullable = false)
-    private String email;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private LaunchType type;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "date_launch", nullable = false)
+    private Timestamp date;
+
+    @Column(name = "quantity", nullable = false)
+    private Long quantity;
+
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
     @Column(name = "create_at")
     @CreationTimestamp
@@ -50,5 +65,4 @@ public class User implements Serializable {
     @Column(name = "update_at")
     @UpdateTimestamp
     private Instant updateAt;
-
 }

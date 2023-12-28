@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.mywallet.api.mock.RequestMock.JSON_ACTIVE_CREATE_REQUEST;
@@ -38,7 +39,7 @@ public class ActiveControllerTest extends ApiApplicationTests {
 
     @Test
     void create() throws Exception {
-        final var active = new Active(1, "any_name", "any_ticket", ActiveCategory.FII, ActiveType.BUY_HOLD, ActiveCurrency.REAL, 3, 2, List.of(), null, null, null);
+        final var active = new Active(1L, "any_name", "any_ticket", ActiveCategory.FII, ActiveType.BUY_HOLD, ActiveCurrency.REAL, 3L, new BigDecimal("2"),  new BigDecimal("2"), new BigDecimal("2"), List.of(),  List.of(), null, null, null);
 
         when(this.activeService.create(any())).thenReturn(active);
 
