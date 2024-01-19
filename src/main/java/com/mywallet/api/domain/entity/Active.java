@@ -76,9 +76,14 @@ public class Active implements Serializable {
     @Column(name = "pm")
     private BigDecimal pm;
 
+    @Column(name = "maximum_price")
+    private BigDecimal maximumPrice;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "active", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Report> reports;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "active", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Launch> launchs;
 

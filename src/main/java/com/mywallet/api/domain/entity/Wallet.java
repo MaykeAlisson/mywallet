@@ -1,5 +1,6 @@
 package com.mywallet.api.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mywallet.api.domain.enums.WallateCategory;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,6 +49,7 @@ public class Wallet implements Serializable {
     @Column(name = "percent")
     private Integer percent;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

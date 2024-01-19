@@ -1,0 +1,1 @@
+ALTER TABLE wallets ADD UNIQUE `unique_index` (user_id, category);
